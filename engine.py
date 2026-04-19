@@ -51,6 +51,7 @@ def read_utf8_file(filepath):
     except FileNotFoundError:
         print(f"Error: File not found at {filepath}")
         exit()
+        
         return None
     except UnicodeDecodeError:
         print(f"Error: Could not decode file at {filepath} using UTF-8 encoding.")
@@ -64,7 +65,7 @@ def write_utf8_file(filepath, text):
             f.write(text)
 
     except Exception as e:
-        print(f"Error writing to file: {e}")
+
         exit()
 
 def on_close(page, sockets):
