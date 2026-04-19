@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js</title>
+
+  </head>
+  <body>
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "./build/three.module.js",
+					"three/addons/": "./jsm/"
+				}
+			}
+		</script>
+		<script type="text/javascript" src="/eel.js"></script>
+		<script type="module" src="./script.js"></script>
+		<script>
+			// În scriptul tău unde inițializezi Three.js
+			async function initThreeJS() {
+				try {
+
+					if (window.eel) {
+						eel.close_loading_screen()();
+					}
+
+				} catch (error) {
+					console.error("Erroor:", error);
+				}
+			}
+
+			
+			initThreeJS();	
+		</script>
+  </body>
+</html>
