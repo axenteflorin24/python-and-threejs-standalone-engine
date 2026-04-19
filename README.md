@@ -1,5 +1,5 @@
 # python-and-threejs-standalone-engine
-Run <a href="https://threejs.org/">three.js</a> projects in standalonel, engine, windows application
+Run <a href="https://threejs.org/">three.js</a> projects in standalone, engine, windows application
 
 python modules : eel, pillow, tk, pyinstaller
 
