@@ -4,7 +4,7 @@ Run <a href="https://threejs.org/">three.js</a> projects in standalone engine wi
 python modules : eel, pillow, tk, pyinstaller
 
 Installation Tutorial: https://www.youtube.com/watch?v=_PzMZTDh2WU
-[![Everything Is AWESOME]([https://img.youtube.com/vi/_PzMZTDh2WU/maxresdefault.jpg](https://raw.githubusercontent.com/axenteflorin24/python-and-threejs-standalone-engine/refs/heads/main/assets/thumbnail.jpg))](https://www.youtube.com/watch?v=_PzMZTDh2WU "Run Three.js Engine Projects In Windows Python, Standalone Application, Tutorial")
+[![Everything Is AWESOME](https://raw.githubusercontent.com/axenteflorin24/python-and-threejs-standalone-engine/refs/heads/main/assets/thumbnail.jpg)](https://www.youtube.com/watch?v=_PzMZTDh2WU "Run Three.js Engine Projects In Windows Python, Standalone Application, Tutorial")
 
 
 
