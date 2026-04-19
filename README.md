@@ -1,5 +1,5 @@
 # python-and-threejs-standalone-engine
-Run three.js projects in stand alone engine
+Run three.js projects in standalone engine windows application
 
 python modules : eel, pillow, tk, pyinstaller
 
