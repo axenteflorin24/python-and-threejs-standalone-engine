@@ -69,7 +69,7 @@ def write_utf8_file(filepath, text):
         exit()
 
 def on_close(page, sockets):
-    print(f"Fereastra {page}")
+    
     sys.exit()
 
 @eel.expose
