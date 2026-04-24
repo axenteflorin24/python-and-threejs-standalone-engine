@@ -2,8 +2,18 @@ import eel
 import sys
 import os
 import tkinter as tk
-from threading import Thread
+from threading import Thread, Timer
 from PIL import Image, ImageTk
+
+
+
+close_timer = None
+should_close_loading = False
+
+def sync_app():
+    
+    os._exit(0)
+
 
 def get_script_dir():
     if getattr(sys, 'frozen', False):
@@ -13,33 +23,16 @@ def get_script_dir():
 
     return str(application_path)
     
-
-
 def show_loading_screen():
     global root
     root = tk.Tk()
-    root.title("Three.js")
-    
-    window_width, window_height = 600, 380
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-    center_x = int(screen_width/2 - window_width/2)
-    center_y = int(screen_height/2 - window_height/2)
-    root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
+    def check_status():
+        if should_close_loading:
+            root.destroy()
+        else:
+            root.after(100, check_status)\
 
-    img_open = Image.open("SplashScreen.data")
-
-    img_open = img_open.resize((600, 380))
-        
-    photo = ImageTk.PhotoImage(img_open)
-        
-    
-    img_label = tk.Label(root, image=photo, bg="white")
-    img_label.image = photo
-    img_label.pack()
-    
-    label = tk.Label(root, text="", pady=20)
-    label.pack()
+    root.after(100, check_status)
     root.mainloop()
 
 def read_utf8_file(filepath):
@@ -51,7 +44,6 @@ def read_utf8_file(filepath):
     except FileNotFoundError:
         print(f"Error: File not found at {filepath}")
         exit()
-        
         return None
     except UnicodeDecodeError:
         print(f"Error: Could not decode file at {filepath} using UTF-8 encoding.")
@@ -65,21 +57,32 @@ def write_utf8_file(filepath, text):
             f.write(text)
 
     except Exception as e:
-
+        print(f"Error writing to file: {e}")
         exit()
 
+
 def on_close(page, sockets):
-    
-    sys.exit()
+    if not sockets:
+        
+        os._exit(0)
+@eel.expose  
+def keep_sync():
+    global close_timer
+   
+    if close_timer:
+        close_timer.cancel()
+
+    close_timer = Timer(3.38, sync_app)
+    close_timer.start()
 
 @eel.expose
 def close_loading_screen():
-    if 'root' in globals():
-        root.after(0, root.destroy)
+    global should_close_loading
+    should_close_loading = True
 
 loading_thread = Thread(target=show_loading_screen)
+loading_thread.daemon = True
 loading_thread.start()
-
 
         
 settings = read_utf8_file("engine.txt").split('[,]')
@@ -90,7 +93,7 @@ index_script = settings[3]
 browser_type = settings[4]
 
 eel.browsers.set_path(browser_type, chrome_path)
-eel.init(web_root)
+eel.init(web_root, allowed_extensions=['.none']) 
 
 
-eel.start(index_script, port=int(_port), close_callback=on_close)
+eel.start(index_script, port=int(_port), suppress_error=True, close_callback=None)
