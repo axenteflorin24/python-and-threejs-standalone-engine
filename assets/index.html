@@ -19,7 +19,12 @@
 		<script type="text/javascript" src="/eel.js"></script>
 		<script type="module" src="./script.js"></script>
 		<script>
-			
+			function sync_app() {
+				eel.keep_sync()();
+			}
+
+			sync_app();
+
 			async function initThreeJS() {
 				try {
 
@@ -34,6 +39,7 @@
 
 			
 			initThreeJS();	
+			setInterval(sync_app, 1.338);
 		</script>
   </body>
 </html>
