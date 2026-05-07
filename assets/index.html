@@ -8,6 +8,7 @@
 
   </head>
   <body>
+
 		<script type="importmap">
 			{
 				"imports": {
@@ -19,9 +20,22 @@
 		<script type="text/javascript" src="/eel.js"></script>
 		<script type="module" src="./script.js"></script>
 		<script>
-			function sync_app() {
-				eel.keep_sync()();
+		
+			async function sync_app() {
+			  try {
+			  
+				let sync_status = await eel.keep_sync()();
+				
+				if(sync_status == 'true'){
+					window.location.reload();
+				}
+				
+			  } catch (error) {
+				
+				console.error("Error:", error);
+			  }
 			}
+
 
 			sync_app();
 
