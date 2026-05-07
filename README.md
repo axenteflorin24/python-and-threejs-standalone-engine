@@ -1,5 +1,7 @@
 # python-and-threejs-standalone-engine
 
+<b>05/08/2026 - The real-time script synchronization option has been implemented.</b>
+
 <b>04/24/2026 - We have improved this utility, more precisely, before it was slow to load because it took some time to list all the scripts in the Three.js module. We have also solved a critical problem with synchronization, refresh did not work and the application closed. In the future, an important option will be added to synchronize in real time and autorefresh if there are changes in the game source code, no longer having to refresh manually with each change.</b>
 
 
